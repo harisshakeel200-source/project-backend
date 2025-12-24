@@ -15,32 +15,17 @@ connectDB()
 connectCloudinary()
 
 // Middlewares
-app.use(cors({
-    origin: [
-        "https://admin-panel-coral-one.vercel.app",
-        "https://your-user-frontend.vercel.app"
-    ],
-    credentials: true,
-}))
-
-// Handle preflight OPTIONS requests
-app.options("*", cors())
-
-
 app.use(express.json())
-
-
-
+app.use(cors())
 
 // API Endpoints
 app.use('/api/user',userRouter)
 app.use('/api/product',productRouter)
 app.use('/api/cart',cartRouter)
-app.use('/api/order',orderRouter)
+app.use('/api/order/',orderRouter)
 
-app.get('/', (req, res) => {
-    res.status(200).json({ message: "API Working" })
+app.get('/',(req,res)=>{
+    res.send("API Working")
 })
-
 
 app.listen(port, ()=> console.log('Server started on PORT : '+ port))
