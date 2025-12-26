@@ -15,8 +15,19 @@ connectDB()
 connectCloudinary()
 
 // Middlewares
+// app.use(express.json())
+// app.use(cors())
+// Middlewares
 app.use(express.json())
-app.use(cors())
+
+app.use(cors({
+  origin: [
+    'https://admin-panel-coral-one.vercel.app',
+    'https://forever-kj88.vercel.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}))
 
 // API Endpoints
 app.use('/api/user',userRouter)
